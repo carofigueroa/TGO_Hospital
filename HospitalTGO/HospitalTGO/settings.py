@@ -37,7 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'HojaIndicacion'
+    'HojaIndicacion',
+    'django_agenda',
 ]
 
 MIDDLEWARE = [
