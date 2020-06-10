@@ -1,6 +1,7 @@
 from django.contrib import admin
 from HojaIndicacion.models import paciente,profesional,medicamentos,tipo_reposo, cirugias, regimen, hoja_indicaciones
 from HojaIndicacion.models import cadacuanto, controles, prevision,recien_nacido,  examene
+
 #viendo si funciona
 # Register your models here.
 class Org_Matrona(admin.ModelAdmin):
@@ -29,7 +30,8 @@ class Regimen_Admin(admin.ModelAdmin):
     list_display=("tipo_regimen",)
 
 class Hoja_Admin(admin.ModelAdmin):
-    list_display=("fecha","nombre_profesional","nombre_paciente","tipo_regimen","Nombre_cirugias","reposo","control")
+    list_display=("fecha","nombre_profesional","nombre_paciente","tipo_regimen","Nombre_cirugias",
+                "Hora_cirugias", "reposo","control")
     search_fields=("nombre_paciente","nombre_profesional")
     list_filter=("fecha","tipo_regimen")
     date_hierarchy="fecha"
