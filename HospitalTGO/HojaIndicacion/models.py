@@ -143,9 +143,5 @@ class recien_nacido(models.Model):
         verbose_name_plural = "Recien Nacidos"
 
 
-class organizacion_matrona(models.Model):
-    hora=models.DateTimeField()
-
-
 
 
