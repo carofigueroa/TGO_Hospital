@@ -1,6 +1,8 @@
 from django.db import models
 from datetime import date, time
+import django_agenda
 
+django_agenda.__name__
 
 # Create your models here.
 
