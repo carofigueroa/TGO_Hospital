@@ -1,6 +1,6 @@
 from django.contrib import admin
 from HojaIndicacion.models import paciente,profesional,medicamentos,tipo_reposo, cirugias, regimen, hoja_indicaciones
-from HojaIndicacion.models import cadacuanto, controles, prevision,recien_nacido,  examene
+from HojaIndicacion.models import cadacuanto, controles, prevision,recien_nacido,  examene, agenda_matrona
 
 # Register your models here.
 class Org_Matrona(admin.ModelAdmin):
@@ -49,3 +49,4 @@ admin.site.register(controles)
 admin.site.register(recien_nacido)
 admin.site.register(prevision)
 admin.site.register(examene,Examenes_Admin)
+admin.site.register(agenda_matrona)
