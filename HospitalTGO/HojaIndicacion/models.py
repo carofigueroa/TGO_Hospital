@@ -103,7 +103,6 @@ class controles(models.Model):
     def __str__(self):
         return "%s cada %s horas" % (self.tipo_control, self.regularidad)
     
-
     class Meta:
         verbose_name_plural = "Controles"
 
@@ -129,9 +128,21 @@ class hoja_indicaciones(models.Model):
     reposo=models.ForeignKey(tipo_reposo, blank=True, null=True, on_delete=models.deletion.CASCADE)
     control=models.ForeignKey(controles, blank=True, null=True, on_delete=models.deletion.CASCADE)
     examen=models.ForeignKey(examene,blank=True, null=True, on_delete=models.deletion.CASCADE)
+    hora_examen=models.TimeField(blank=True,null=True)
 
     class Meta:
         verbose_name_plural = "Hoja de indicaciones"
+
+    def __str__(self):
+        if self.Nombre_cirugias!=None and self.examen!=None:
+           return f"{self.nombre_paciente} examen {self.examen} a las {self.hora_examen} y cirugía {self.Nombre_cirugias} a las {self.Hora_cirugias}"
+        elif self.Nombre_cirugias!=None and self.examen==None: 
+           return f"{self.nombre_paciente} cirugía {self.Nombre_cirugias} a las {self.Hora_cirugias}"
+        elif self.Nombre_cirugias==None and self.examen!=None:
+           return f"{self.nombre_paciente} examen {self.examen} a las {self.hora_examen}"
+        else:
+            return f"{self.nombre_paciente} no tiene agendadas curaciones ni cirugias"
+
 
 
 class recien_nacido(models.Model):
@@ -144,6 +155,12 @@ class recien_nacido(models.Model):
     class Meta:
         verbose_name_plural = "Recien Nacidos"
 
+class agenda_matrona(models.Model):
+    nombre_profesional=models.ForeignKey(profesional,blank=True,null=True, on_delete=models.deletion.CASCADE)
+    Horas=models.TimeField()
+    actividades=models.ForeignKey(hoja_indicaciones,blank=True,null=True, on_delete=models.deletion.CASCADE)
 
 
+    class Meta:
+        verbose_name_plural = "Agenda"
 
