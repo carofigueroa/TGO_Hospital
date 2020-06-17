@@ -141,8 +141,10 @@ class hoja_indicaciones(models.Model):
         elif self.Nombre_cirugias==None and self.examen!=None:
            return f"{self.nombre_paciente} examen {self.examen} a las {self.hora_examen}"
         else:
-            return f"{self.nombre_paciente} no tiene agendadas curaciones ni cirugias"
+            return f"{self.nombre_paciente} no tiene agendadas curaciones, examenes ni cirugias"
 
+
+#Medicion de disponibilidad 
 
 
 class recien_nacido(models.Model):
