@@ -166,3 +166,5 @@ class agenda_matrona(models.Model):
     class Meta:
         verbose_name_plural = "Agenda"
 
+class hola(models.Model):
+    Horas=models.TimeField()
