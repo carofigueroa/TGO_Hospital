@@ -117,17 +117,16 @@ class examene(models.Model):
     
 
 class hoja_indicaciones(models.Model):
-    fecha=models.DateField()
+    fecha=models.DateField(auto_now=True)
     nombre_profesional=models.ForeignKey(profesional, blank=True, null=True, on_delete=models.deletion.CASCADE)
     nombre_paciente=models.ForeignKey(paciente, blank=True, null=True, on_delete=models.deletion.CASCADE)
-    nombre_medicamento=models.ManyToManyField(medicamentos, blank=True)
-    hora_medicamento=models.TimeField(blank=True, null=True)
-    tipo_regimen=models.ForeignKey(regimen, blank=True, null=True, on_delete=models.deletion.CASCADE)
-    Nombre_cirugias=models.ForeignKey(cirugias, blank=True, null=True, on_delete=models.deletion.CASCADE)
-    Hora_cirugias=models.TimeField(blank=True, null=True)
     reposo=models.ForeignKey(tipo_reposo, blank=True, null=True, on_delete=models.deletion.CASCADE)
+    tipo_regimen=models.ForeignKey(regimen, blank=True, null=True, on_delete=models.deletion.CASCADE)
+    nombre_medicamento=models.ManyToManyField(medicamentos, blank=True)
+    preparacion_operacion=models.BooleanField(default=False)
+    Nombre_cirugias=models.ForeignKey(cirugias, blank=True, null=True, on_delete=models.deletion.CASCADE)
     control=models.ForeignKey(controles, blank=True, null=True, on_delete=models.deletion.CASCADE)
-    examen=models.ForeignKey(examene,blank=True, null=True, on_delete=models.deletion.CASCADE)
+    examen=models.ManyToManyField(examene,blank=True)
     hora_examen=models.TimeField(blank=True,null=True)
 
     class Meta:
@@ -135,11 +134,7 @@ class hoja_indicaciones(models.Model):
 
     def __str__(self):
         if self.Nombre_cirugias!=None and self.examen!=None:
-           return f"{self.nombre_paciente} examen {self.examen} a las {self.hora_examen} y cirugía {self.Nombre_cirugias} a las {self.Hora_cirugias}"
-        elif self.Nombre_cirugias!=None and self.examen==None: 
-           return f"{self.nombre_paciente} cirugía {self.Nombre_cirugias} a las {self.Hora_cirugias}"
-        elif self.Nombre_cirugias==None and self.examen!=None:
-           return f"{self.nombre_paciente} examen {self.examen} a las {self.hora_examen}"
+           return f"{self.nombre_paciente} examen {self.examen} a las {self.hora_examen} y cirugía {self.Nombre_cirugias}"
         else:
             return f"{self.nombre_paciente} no tiene agendadas curaciones, examenes ni cirugias"
 
