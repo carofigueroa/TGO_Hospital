@@ -2,6 +2,12 @@
 
 {% block content %}
 
-
-
+    <h1>Embarazadas {{embarazo|length}}</h1>
+    <h1>No Embarazadas {{no_embarazo|length}}</h1>
+    {% for i in cirugias %}
+        {% if i.Nombre_cirugias %}
+            {{i.Nombre_cirugias}}
+        {% endif %}
+        
+    {% endfor %}
 {% endblock %}
