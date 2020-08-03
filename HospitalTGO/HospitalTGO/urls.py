@@ -15,6 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from HojaIndicacion import views
 
 admin.site.site_header="Hospital San Juan de Dios."
 admin.site.site_title = "Hospital San Juan de Dios."
@@ -22,4 +23,5 @@ admin.site.index_title = "Administración: Unidad Maternidad."
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('kpis/', views.kpis, name="KPIS")
 ]
