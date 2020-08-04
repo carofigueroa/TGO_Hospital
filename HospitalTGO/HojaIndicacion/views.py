@@ -1,9 +1,12 @@
 from django.shortcuts import render
 
 # Create your views here.
-from HojaIndicacion.models import paciente, hoja_indicaciones, cirugias
+from HojaIndicacion.models import paciente, hoja_indicaciones, cirugias, medicamentos
 import json
 # Create your views here.
+
+def main(request):
+    return render(request,'main.html')
 
 def cirugia(request):
     contador=[]
@@ -16,27 +19,19 @@ def cirugia(request):
     for j in range(len(vale)):
         lista+=[[vale[j],contador[j]]]
 
-    h_var="Cirugias"
-    v_var="Cantidad"
-    hola=[[h_var,v_var]]
+    hola=[["Cirugias","Cantidad"]]
     lista=hola+lista
     
-    h_var_JSON=json.dumps(h_var)
-    v_var_JSON=json.dumps(v_var)
     modified_data=json.dumps(lista)
-
 
     return render(request,'graph_cirugia.html',{    
         'values':modified_data,
-        'h_title':h_var_JSON,
-        'v_title':v_var_JSON
-
-
     })
 
-def main(request):
-    return render(request,'main.html')
+def medicamento(request):
+    todos_medicamentos=medicamentos.objects.values_list('nombre',flat=True)
+    usados_medicamentos=hoja_indicaciones.objects.values_list('nombre_medicamento',flat=True)
 
-
-def medicamentos(request):
-    return render(request,'graph_med.html')
+    return render(request,'KPI.html',{
+        'values':usados_medicamentos,
+    })
