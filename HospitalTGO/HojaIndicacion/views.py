@@ -1,8 +1,6 @@
 from django.shortcuts import render
-<<<<<<< Updated upstream
 
 # Create your views here.
-=======
 from HojaIndicacion.models import paciente, hoja_indicaciones, cirugias
 import json
 # Create your views here.
@@ -38,4 +36,7 @@ def cirugia(request):
 
 def main(request):
     return render(request,'main.html')
->>>>>>> Stashed changes
+
+
+def medicamentos(request):
+    return render(request,'graph_med.html')
