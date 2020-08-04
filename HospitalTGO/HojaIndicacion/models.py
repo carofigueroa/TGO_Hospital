@@ -2,7 +2,6 @@ from django.db import models
 from datetime import date, time
 import django_agenda
 
-django_agenda.__name__
 
 # Create your models here.
 
@@ -123,11 +122,12 @@ class hoja_indicaciones(models.Model):
     reposo=models.ForeignKey(tipo_reposo, blank=True, null=True, on_delete=models.deletion.CASCADE)
     tipo_regimen=models.ForeignKey(regimen, blank=True, null=True, on_delete=models.deletion.CASCADE)
     nombre_medicamento=models.ManyToManyField(medicamentos, blank=True)
-    preparacion_operacion=models.BooleanField(default=False)
+    #preparacion_operacion=models.BooleanField(default=False)
     Nombre_cirugias=models.ForeignKey(cirugias, blank=True, null=True, on_delete=models.deletion.CASCADE)
-    control=models.ForeignKey(controles, blank=True, null=True, on_delete=models.deletion.CASCADE)
-    examen=models.ManyToManyField(examene,blank=True)
-    hora_examen=models.TimeField(blank=True,null=True)
+    control=models.ForeignKey(controles,default=None, blank=True, null=True, on_delete=models.deletion.CASCADE)
+    examen=models.BooleanField(default=False)
+    #hora_examen=models.TimeField(blank=True,null=True)
+    alta=models.BooleanField(default=False)
 
     class Meta:
         verbose_name_plural = "Hoja de indicaciones"
