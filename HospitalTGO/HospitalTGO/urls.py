@@ -21,5 +21,11 @@ admin.site.site_title = "Hospital San Juan de Dios."
 admin.site.index_title = "Administración: Unidad Maternidad."
 
 urlpatterns = [
+<<<<<<< Updated upstream
     path('admin/', admin.site.urls),
+=======
+    path('admin/', admin.site.urls, name="Admi"),
+    path('',views.main, name='Inicio'),
+    path('cir/', views.cirugia, name="cirugia"),
+>>>>>>> Stashed changes
 ]
