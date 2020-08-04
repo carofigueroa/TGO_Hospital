@@ -30,7 +30,7 @@ class Regimen_Admin(admin.ModelAdmin):
 
 class Hoja_Admin(admin.ModelAdmin):
     list_display=("fecha","nombre_profesional","nombre_paciente","tipo_regimen","Nombre_cirugias",
-                 "preparacion_operacion","reposo","control")
+                 "reposo","control")
     search_fields=("nombre_paciente","nombre_profesional")
     list_filter=("fecha","tipo_regimen")
     date_hierarchy="fecha"
